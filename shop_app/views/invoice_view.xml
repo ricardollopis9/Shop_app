@@ -1,0 +1,136 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="shop_app.invoice_model_list">
+      <field name="name">Shop List</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="reference"></field>
+          <field name="date"></field>
+          <field name="base"></field>
+          <field name="vat"></field>
+          <field name="total"></field>
+          <field name="lines_ids"></field>
+          <field name="client_id"></field>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form definition-->
+    <record model="ir.ui.view" id="shop_app.invoice_model_form">
+      <field name="name">Shop Form</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <form string="Shop">
+          <sheet>
+            <header>
+              <button name="change_state" type="object" string="Confirm Shop" class="oe_highlight" />
+              <field name="state" widget="statusbar" />
+            </header>
+            <group>
+              <field name="reference" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="date" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="base" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="vat" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="total" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="lines_ids" attrs="{'readonly':[('state','=','Confirmed')]}">
+                <form string="Line">
+                  <field name="product_id"></field>
+                  <field name="quantity"></field>
+                </form>
+              </field>
+              <field name="client_id" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="shop_app.invoice_model_calendar">
+      <field name="name">Shop Calendar</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date" color="client_id" mode="month" event_open_popup="True" form_view_id="shop_app.invoice_form" quick_add="False">
+          <field name="reference" />
+          <field name="total" />
+          <field name="client_id" />
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.sequence" id="seq_name_occ">
+      <field name="name">Reference Test</field>
+      <field name="code">reference.test</field>
+      <field name="padding">3</field>
+
+    </record>
+
+    <record model="ir.ui.view" id="shop_app.invoice_model_graph">
+      <field name="name">Shop Graph</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <graph>
+          <field name="client_id" type="row" />
+          <field name="date" interval="month" />
+          <field name="total" type="measure" widget="monetary" />
+        </graph>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="shop_app.invoice_model_pivot">
+      <field name="name">Shop Pivot</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <pivot string="Pivot Shop">
+          <field name="client_id" type="row"></field>
+          <field name="date"></field>
+          <field name="base"></field>
+          <field name="vat"></field>
+          <field name="total" type="measure"></field>
+        </pivot>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="shop_app.action_window_invoice">
+      <field name="name">Shop Window</field>
+      <field name="res_model">shop_app.invoice_model</field>
+      <field name="view_mode">tree,form,calendar,graph,pivot</field>
+    </record>
+
+    <!-- Filters
+    
+        <record model="ir.ui.view" id="task_app.task_model_search">
+          <field name="name">Student Filters</field>
+          <field name="model">validation_app.student_model</field>
+          <field name="arch" type="xml">
+            <search>
+              <field name="name"/>
+              <filter string="Finished" name="Finished" domain="[('active','=',False)]"></filter>
+              <filter string="Not Finished" name="NotFinished" domain="[('active','=',True)]"></filter>
+            </search>
+          </field>
+        </record>-->
+
+
+    <!-- server action to the one above -->
+    <!--
+        <record model="ir.actions.server" id="task_app.action_server">
+          <field name="name">task_app server</field>
+          <field name="model_id" ref="model_task_app_task_app"/>
+          <field name="state">code</field>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": model._name,
+            }
+          </field>
+        </record>
+    -->
+  </data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shop_app_client_model,shop_app.client_model,model_shop_app_client_model,base.group_user,1,1,1,1
+access_shop_app_product_model,shop_app.product_model,model_shop_app_product_model,base.group_user,1,1,1,1
+access_shop_app_employe_model,shop_app.employe_model,model_shop_app_employe_model,base.group_user,1,1,1,1
+access_shop_app_invoice_model,shop_app.invoice_model,model_shop_app_invoice_model,base.group_user,1,1,1,1
+access_shop_app_line_model,shop_app.line_model,model_shop_app_line_model,base.group_user,1,1,1,1
