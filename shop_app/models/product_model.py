@@ -9,7 +9,7 @@ class ProductModel(models.Model):
 
     name = fields.Char(string="Name", required=True, index=True, help="Product Name")
     description = fields.Char(string="Description", index=True, help="Description")
-    category = fields.Selection(string="Category", selection=[('Food','Food'), ('Movies','Movies'), ('Drinks','Drinks'), ('Furniture','Furniture'),('Clothing','Clothing'), ('Toys','Toys'), ('','')], default='' ,help="This is the products categories")
+    category = fields.Selection(string="Category", required=True, selection=[('Food','Food'), ('Movies','Movies'), ('Drinks','Drinks'), ('Furniture','Furniture'),('Clothing','Clothing'), ('Toys','Toys'), ('','')], default='' ,help="This is the products categories")
     price = fields.Float(string="Price", required=True, help="Price", default=0)
     vat = fields.Float(String="VAT", required=True, help="VAT", default=21)
     stock = fields.Integer(string='Stock', required=True, help="Product quantity", default = 0, store=True)

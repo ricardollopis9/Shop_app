@@ -9,6 +9,7 @@
         <tree>
           <field name="reference"></field>
           <field name="date"></field>
+          <field name="employe_id"></field>
           <field name="base"></field>
           <field name="vat"></field>
           <field name="total"></field>
@@ -32,6 +33,7 @@
             <group>
               <field name="reference" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
               <field name="date" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
+              <field name="employe_id" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
               <field name="base" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
               <field name="vat" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
               <field name="total" attrs="{'readonly':[('state','=','Confirmed')]}"></field>
@@ -94,12 +96,24 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="shop_app.invoice_model_search">
+      <field name="name">Invoice Filter</field>
+      <field name="model">shop_app.invoice_model</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="state" />
+          <filter string="Confirmed Invoices" name="ConfirmedInvoices" domain="[('state','=','Confirmed')]" />
+          <filter string="Draft Invoices" name="ConfirmedInvoices" domain="[('state','=','Draft')]" />
+        </search>
+      </field>
+    </record>
+
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="shop_app.action_window_invoice">
       <field name="name">Shop Window</field>
       <field name="res_model">shop_app.invoice_model</field>
-      <field name="view_mode">tree,form,calendar,graph,pivot</field>
+      <field name="view_mode">tree,form,calendar,graph,pivot,search</field>
     </record>
 
     <!-- Filters

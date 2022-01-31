@@ -12,11 +12,11 @@ class InvoiceModel(models.Model):
     base = fields.Float(string="Base", default=0, help="Base Price", compute='_check_base', store=True)
     vat = fields.Selection(string="VAT", selection=[('0','0'), ('4','4'), ('10','10'), ('21','21')], default='21' ,help="This is the invoice VAT")
     total = fields.Float(string="Total", default=0, help="This final price", compute='_check_total', store=True)
-    state = fields.Selection(selection=[('Confirmed','Confirmed'),('Draft','Draft')], default="Draft")
+    state = fields.Selection(selection=[('Draft','Draft'),('Confirmed','Confirmed')], default="Draft")
 
-    lines_ids = fields.One2many("shop_app.line_model", "invoice_id", string="Invoice")
-    client_id = fields.Many2one("shop_app.client_model", string="Client")
-    employe_id = fields.Many2one("shop_app.invoice_model", string="Employe")
+    lines_ids = fields.One2many("shop_app.line_model", "invoice_id", string="Invoice", required=True)
+    client_id = fields.Many2one("shop_app.client_model", string="Client", required=True)
+    employe_id = fields.Many2one("shop_app.employe_model", string="Attended by", required=True)
 
     @api.depends("lines_ids")
     def _check_base(self):
@@ -55,4 +55,4 @@ class InvoiceModel(models.Model):
             self._cr.autocommit(True)
             return True
         else:
-            raise ValidationError("El Cliente no tiene suficiente dinero para pagar.")
+            raise ValidationError("El Cliente no tiene suficiente dinero para pagar o Cliente no seleccionados.")

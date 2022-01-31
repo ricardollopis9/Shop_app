@@ -24,15 +24,27 @@
         <field name="model">shop_app.client_model</field>
         <field name="arch" type="xml">
           <form string="Client">
-            <group>
-              <field name="name"></field>
-              <field name="surname"></field>
-              <field name="dni"></field>
-              <field name="photo" widget="image"></field>
-              <field name="phone"></field>
-              <field name="email"></field>
-              <field name="money"></field>
-            </group>
+            <notebook>
+              <page string="Datos 1">
+                <group>
+                  <field name="name"></field>
+                  <field name="surname"></field>
+                  <field name="dni"></field>
+                  <field name="photo" widget="image"></field>
+                  <field name="phone"></field>
+                  <field name="email"></field>
+                  <field name="money"></field>
+                </group>
+              </page>
+              <page string="Datos 2">
+                <group>
+                  <field name="direction"></field>
+                  <field name="city"></field>
+                  <field name="postalcode"></field>
+                  <field name="job"></field>
+                </group>
+              </page>
+            </notebook>
           </form>
         </field>
       </record>

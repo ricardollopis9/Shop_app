@@ -1,0 +1,38 @@
+<odoo>
+    <data noupdate="1">
+        <record id="1" model="shop_app.product_model">
+            <field name="name">Apples</field>
+            <field name="description">Apples</field>
+            <field name="category">Food</field>
+            <field name="price">1.0</field>
+            <field name="stock">100</field>
+        </record>
+        <record id="2" model="shop_app.product_model">
+            <field name="name">Sofa</field>
+            <field name="description">Sofa</field>
+            <field name="category">Furniture</field>
+            <field name="price">400</field>
+            <field name="stock">20</field>
+        </record>
+        <record id="3" model="shop_app.client_model">
+            <field name="name">Javier</field>
+            <field name="surname">JG</field>
+            <field name="dni">20882999B</field>
+            <field name="photo" type="base64" file="shop_app/static/images/hqdefault.jpg"/>
+            <field name="phone">878787878</field>
+            <field name="email">juasjuas@gmail.com</field>
+            <field name="money">1000</field>
+            <field name="direction">Alginet 1 nº 0</field>
+            <field name="city">Alginet jajajaj</field>
+            <field name="postalcode">46230</field>
+            <field name="job">Eternal Job</field>
+        </record>
+        <record id="4" model="shop_app.employe_model">
+            <field name="name">Grat</field>
+            <field name="surname">MXC</field>
+            <field name="dni">20882999B</field>
+            <field name="photo" type="base64" file="shop_app/static/images/hqdefault.jpg"/>
+            <field name="phone">999888777</field>
+        </record>
+    </data>
+</odoo>

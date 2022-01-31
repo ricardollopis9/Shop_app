@@ -16,6 +16,11 @@ class ClientModel(models.Model):
     email = fields.Char(string="Email", required=True, help="This is the client email")
     money = fields.Float(string="Money", required=True, default=0, help="This is the client money")
 
+    postalcode = fields.Char(string="Postal Code", required=True, index=True, help="Postal Code")
+    city = fields.Char(string="City", required=True, index=True, help="City")
+    direction = fields.Char(string="Direction", required=True, index=True, help="Direction")
+    job = fields.Char(string="Job", index=True, help="job")
+
     invoices_ids = fields.One2many("shop_app.invoice_model", "client_id", string="Invoices")
 
 
